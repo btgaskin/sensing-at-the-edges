@@ -1,0 +1,26 @@
+description: Double-cliff deformation-off render probe at 4000 steps for the cliffblind case.
+seed: 137
+jax_platform: cpu
+assays:
+  - deformation_ablation
+config_patch:
+  eval:
+    post_run:
+      max_steps: 4000
+      native_max_steps: 4000
+      double_cliff_max_steps: 4000
+      trials_per_side: 1
+      deformation_conditions:
+        - deformation_off
+      deformation_surfaces:
+        - double_cliff
+      deformation_render_conditions:
+        - deformation_off
+      double_cliff:
+        plateau_width: 9
+        widths: [4]
+        trials_per_width: 1
+      trace:
+        enabled: false
+      render:
+        enabled: true

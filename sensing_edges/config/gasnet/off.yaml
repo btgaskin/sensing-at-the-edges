@@ -1,0 +1,4 @@
+# @package _global_
+nca:
+  gasnet_mode: "off"
+  gasnet_type: "signal"

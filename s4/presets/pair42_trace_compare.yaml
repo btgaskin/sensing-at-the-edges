@@ -1,0 +1,35 @@
+description: Minimal full-trace replay for the matched (4,2) cliff-first pair with intact and deformation-off cohorts.
+jax_platform: cpu
+assays:
+  - pca_bundle
+config_patch:
+  eval:
+    post_run:
+      max_steps: 4000
+      native_max_steps: 4000
+      trials_per_side: 1
+      native_pairs:
+        - goal_distance: 4
+          cliff_distance: 2
+      deformation_conditions:
+        - intact
+        - deformation_off
+      deformation_surfaces:
+        - native_core
+      deformation_render_conditions: []
+      signaling_conditions:
+        - intact
+      signaling_surfaces:
+        - native_core
+      signaling_render_conditions: []
+      trace:
+        enabled: true
+        target_pair:
+          goal_distance: 4
+          cliff_distance: 2
+        requested_trials_per_side: 1
+        episode_batch_size: 1
+        additional_native_cohorts:
+          - cohort_id: deformation_off_native_core
+            cohort_label: Deformation Off Native Core
+            deformation_condition: deformation_off

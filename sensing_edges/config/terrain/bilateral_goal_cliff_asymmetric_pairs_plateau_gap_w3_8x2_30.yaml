@@ -1,0 +1,27 @@
+variant: bilateral_goal_cliff_asymmetric_pairs_plateau_gap_w3_8x2_30
+task_mode: bilateral_goal_cliff
+grid_h: 10
+grid_w: 30
+platform_y: 3
+base_width: 12
+center_plateau_width: 12
+spawn_x: 11
+spawn_y: 4
+robot_w: 8
+robot_h: 2
+cliff_x_min: 20
+cliff_x_max: 25
+distance_pairs:
+  - goal_distance: 2
+    cliff_distance: 1
+  - goal_distance: 4
+    cliff_distance: 2
+  - goal_distance: 6
+    cliff_distance: 3
+cliff_front_gap_width: 3
+cliff_post_gap_runway: 1
+cliff_probe_gap_width: 0
+cliff_probe_ledge_width: 0
+sampling_mode: canonical_bilateral_cycle
+gap_widths: []
+gap_budget: 0

@@ -1,0 +1,12 @@
+enabled: false
+output_root: audit
+generation_eval_mode: reduced_host
+capture_archive_winners: true
+replay_accepted_winners: false
+compare_generation_eval_modes: false
+repeat_full_generation_batch: false
+compare_trace_on_full_generation_batch: false
+compare_floor_stiction_counterfactual: false
+save_full_generation_genotypes: false
+probe_internal_phase_divergence: false
+max_generation_probe_winners: 16

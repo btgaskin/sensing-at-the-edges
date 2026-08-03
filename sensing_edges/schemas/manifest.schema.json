@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sensing Edges Run Manifest",
+  "type": "object",
+  "required": ["schema_version", "kind", "run_id", "status", "git", "system"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "kind": { "type": "string", "const": "sensing_edges_manifest" },
+    "run_id": { "type": "string" },
+    "preset_id": { "type": ["string", "null"] },
+    "paper_core_id": { "type": ["string", "null"] },
+    "paper_core_sha256": { "type": ["string", "null"] },
+    "status": { "type": "string", "enum": ["running", "paused", "completed", "failed"] },
+    "notes": { "type": ["string", "null"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "created_at_utc": { "type": "string" },
+    "completed_at_utc": { "type": ["string", "null"] },
+    "preset_changed_paths": { "type": "array", "items": { "type": "string" } },
+    "runtime_override_keys": { "type": "array", "items": { "type": "string" } },
+    "condition": {
+      "type": "object",
+      "properties": {
+        "controller_size": { "type": "string" },
+        "deformation_condition": { "type": "string" },
+        "physics_substeps": { "type": "integer" },
+        "seed": { "type": "integer" },
+        "reference_actuator_convergence": { "type": "number" },
+        "actuator_convergence": { "type": "number" },
+        "physics_dt": { "type": "number" },
+        "collision_strategy": { "type": "string" },
+        "collision_impl": { "type": "string" },
+        "collision_tuning_mode": { "type": ["string", "null"] },
+        "dynamic_max_candidates": { "type": "integer" },
+        "dynamic_max_narrow": { "type": ["integer", "null"] },
+        "build_max_triples": { "type": ["integer", "null"] },
+        "build_max_self_triples": { "type": ["integer", "null"] },
+        "runtime_build_max_triples": { "type": ["integer", "null"] },
+        "runtime_build_max_self_triples": { "type": ["integer", "null"] }
+      }
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "logical_config_sha256": { "type": ["string", "null"] },
+        "last_invocation_sha256": { "type": ["string", "null"] },
+        "resolved_config_sha256": { "type": "string" },
+        "resolved_config_path": { "type": ["string", "null"] }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "gpu_profile": { "type": ["string", "null"] },
+        "resolved_batching": { "type": "object" },
+        "resolved_collision": { "type": ["object", "null"] }
+      }
+    },
+    "wandb": {
+      "type": "object",
+      "properties": {
+        "run_id": { "type": "string" }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "properties": {
+        "mode": { "type": "string", "enum": ["root", "staged", "branch"] },
+        "parent_run_id": { "type": ["string", "null"] },
+        "parent_checkpoint_path": { "type": ["string", "null"] },
+        "parent_completed_generations": { "type": ["integer", "null"] },
+        "parent_schedule_hashes": { "type": ["object", "null"] }
+      }
+    },
+    "retry": {
+      "type": "object",
+      "properties": {
+        "attempt_count": { "type": "integer", "minimum": 1 },
+        "resumed_from_checkpoint": { "type": ["string", "null"] },
+        "resumed_generation": { "type": ["integer", "null"] },
+        "latest_checkpoint_path": { "type": ["string", "null"] }
+      }
+    },
+    "seeds": {
+      "type": "object",
+      "properties": {
+        "master_seed": { "type": "integer" }
+      }
+    },
+    "git": {
+      "type": "object",
+      "required": ["commit", "dirty"],
+      "properties": {
+        "commit": { "type": "string" },
+        "branch": { "type": ["string", "null"] },
+        "dirty": { "type": "boolean" }
+      }
+    },
+    "system": {
+      "type": "object",
+      "properties": {
+        "python_version": { "type": "string" },
+        "jax_version": { "type": "string" },
+        "jaxlib_version": { "type": "string" }
+      }
+    },
+    "hardware": {
+      "type": "object",
+      "properties": {
+        "backend": { "type": "string" },
+        "device_count": { "type": "integer" },
+        "devices": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "completed_generations": { "type": ["integer", "null"] },
+        "best_train_fitness": { "type": ["number", "null"] },
+        "final_qd_coverage": { "type": ["number", "null"] },
+        "final_qd_score": { "type": ["number", "null"] }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["paused", "completed"] },
+          "attempt_count": { "type": "integer" },
+          "resume_mode": { "type": "string" },
+          "stop_after_generations": { "type": "integer" },
+          "completed_generations": { "type": "integer" },
+          "completed_generation": { "type": "integer" },
+          "latest_checkpoint_path": { "type": ["string", "null"] },
+          "artifact_dir": { "type": "string" },
+          "invocation_config_sha256": { "type": "string" },
+          "finished_at_utc": { "type": "string" }
+        }
+      }
+    },
+    "training": {
+      "type": "object",
+      "properties": {
+        "n_generations": { "type": "integer" },
+        "stop_after_generations": { "type": "integer" },
+        "resume_mode": { "type": "string" },
+        "n_episodes": { "type": "integer" },
+        "max_steps": { "type": "integer" },
+        "n_emitters": { "type": "integer" },
+        "emitter_pop_size": { "type": "integer" },
+        "total_population": { "type": "integer" },
+        "checkpoint_interval": { "type": "integer" }
+      }
+    },
+    "terrain_schedule": { "type": ["object", "null"] }
+  }
+}

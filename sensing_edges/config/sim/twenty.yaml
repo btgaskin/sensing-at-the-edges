@@ -1,0 +1,13 @@
+# Twenty-step physics: 20 substeps, 4 sense-act phases -> 5 substeps/phase
+# actuator_convergence stays exposed as the 30-substep reference value and
+# autoscales to ~0.00450 effective convergence at 20 substeps.
+physics_substeps: 20
+sense_act_phases_per_env_step: 4
+actuator_convergence: 0.003
+spring_stiffness_scale: 0.8
+# Floor stiction (horizontal FIXED platform contacts, independent of stiction_enabled)
+floor_static_friction_const: 0.4
+floor_stiction_stiffness: 20000.0
+floor_stiction_switch_speed: 0.05
+airborne_kill_height_margin_cells: 2.0
+integrator: rk4

@@ -1,0 +1,164 @@
+# Held-out evaluation config
+eval_episodes: 16
+eval_individuals: 25
+rerank_episodes: null
+test_episodes: null
+rerank_max_steps: null
+test_max_steps: null
+rerank_schedule_dir: null
+test_schedule_dir: null
+rerank_variant: null
+test_variant: null
+allow_legacy_schedule_hashes: false
+allow_checkpoint_config_mismatch: false
+ou_noise_seed: 12345
+deformation_suite:
+  enabled: false
+  elite_count: 5
+  render: false
+  render_top_n: 0
+  variants: [clean, zero, noisy, shuffled]
+  noise_sigma_signed_delta: 0.05
+  shuffle_mode: episode_fixed
+gap_generalization_suite:
+  enabled: false
+  trials_per_surface: 12
+  max_steps: null
+  render: false
+  surfaces:
+    - name: gap_w1
+      cliff_front_gap_width: 1
+      cliff_post_gap_runway: 1
+    - name: gap_w2
+      cliff_front_gap_width: 2
+      cliff_post_gap_runway: 1
+    - name: gap_w3
+      cliff_front_gap_width: 3
+      cliff_post_gap_runway: 1
+    - name: bare_cliff
+      cliff_front_gap_width: 0
+      cliff_post_gap_runway: 0
+robustness_probe:
+  enabled: false
+  elite_count: 1
+  mode: symmetric_double_cliff
+  grid_h: 10
+  grid_w: 30
+  platform_y: 3
+  plateau_width: 10
+  min_distance: 1
+  max_distance: 6
+  max_steps: null
+  render: false
+post_run:
+  enabled: false
+  auto_mode: "off"
+  run_on_stage_pause: false
+  selected_rank: 0
+  max_steps: 6000
+  native_max_steps: 4000
+  double_cliff_max_steps: 6000
+  output_dir: post_run
+  analysis_root: analyses
+  active_deformation_condition: clean
+  active_signaling_condition: intact
+  active_sensing_freeze_mode: none
+  state_space_surfaces:
+    - native_core
+  state_space_deformation_condition: intact
+  state_space_signaling_condition: intact
+  native_pairs:
+    - goal_distance: 2
+      cliff_distance: 1
+    - goal_distance: 4
+      cliff_distance: 2
+    - goal_distance: 6
+      cliff_distance: 3
+  long_distance_pairs:
+    - goal_distance: 8
+      cliff_distance: 4
+    - goal_distance: 10
+      cliff_distance: 5
+  long_distance_pair_max_steps:
+    - goal_distance: 8
+      cliff_distance: 4
+      max_steps: 5000
+    - goal_distance: 10
+      cliff_distance: 5
+      max_steps: 6000
+  long_distance_terrain:
+    grid_w: 32
+    plateau_width: 12
+  trials_per_side: 20
+  stochastic_trials_per_side: 5
+  double_cliff:
+    plateau_width: 9
+    widths: [2, 4, 6]
+    trials_per_width: 20
+    stochastic_trials_per_width: 5
+  fast_ablation_eval: true
+  signaling_conditions:
+    [
+      intact,
+      sobel_x_off,
+      sobel_y_off,
+      laplacian_off,
+      identity_comm_off,
+      all_comm_off,
+    ]
+  signaling_surfaces: [native_core]
+  signaling_render_conditions: [intact]
+  deformation_conditions:
+    [intact, absolute_only, compliance_only, deformation_off, noise_only, shuffled]
+  deformation_surfaces: [native_core]
+  deformation_render_conditions: [intact, deformation_off, noise_only, shuffled]
+  frozen_sensing_conditions:
+    - deformation_frozen_start
+    - perception_frozen_start
+  body_transfer_bodies:
+    - label: rect_6x2
+      robot_w: 6
+      robot_h: 2
+      shape: rectangle
+    - label: rect_8x2
+      robot_w: 8
+      robot_h: 2
+      shape: rectangle
+    - label: rect_7x3
+      robot_w: 7
+      robot_h: 3
+      shape: rectangle
+  body_transfer_render_bodies: [reference]
+  combined_ablation_quick_tests:
+    - test_id: deformation_off__sobel_x_off
+      label: Deformation Off + Sobel-X Off
+      deformation_condition: deformation_off
+      signaling_condition: sobel_x_off
+    - test_id: deformation_off__sobel_y_off
+      label: Deformation Off + Sobel-Y Off
+      deformation_condition: deformation_off
+      signaling_condition: sobel_y_off
+    - test_id: deformation_off__laplacian_off
+      label: Deformation Off + Laplacian Off
+      deformation_condition: deformation_off
+      signaling_condition: laplacian_off
+    - test_id: deformation_off__identity_comm_off
+      label: Deformation Off + Identity Off
+      deformation_condition: deformation_off
+      signaling_condition: identity_comm_off
+    - test_id: deformation_off__all_comm_off
+      label: Deformation Off + All Communication Off
+      deformation_condition: deformation_off
+      signaling_condition: all_comm_off
+  trace:
+    enabled: true
+    sample_resolution: controller_step
+    target_pair:
+      goal_distance: 4
+      cliff_distance: 2
+    requested_trials_per_side: 20
+    episode_batch_size: 4
+    additional_native_cohorts:
+      - cohort_id: deformation_off_native_core
+        cohort_label: Deformation Off Native Core
+        deformation_condition: deformation_off

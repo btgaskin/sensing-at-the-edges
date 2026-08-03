@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sensing Edges Publication Run",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "kind",
+    "release_id",
+    "run_id",
+    "run_dir_name",
+    "status",
+    "lineage_mode",
+    "eligible_for_publication",
+    "publication_ready",
+    "paths",
+    "artifacts",
+    "ready_checks"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "kind": { "const": "sensing_edges_publication_run" },
+    "release_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "run_dir_name": { "type": "string" },
+    "run_dir_path": { "type": "string" },
+    "preset_id": { "type": ["string", "null"] },
+    "status": { "type": "string" },
+    "lineage_mode": { "type": "string" },
+    "eligible_for_publication": { "type": "boolean" },
+    "publication_ready": { "type": "boolean" },
+    "exclude_reason": { "type": ["string", "null"] },
+    "completed_generations": { "type": ["integer", "null"] },
+    "run_metadata": { "type": ["object", "null"] },
+    "ready_checks": { "type": "object" },
+    "paths": { "type": "object" },
+    "artifacts": { "type": "object" },
+    "schedule_hashes": { "type": ["object", "null"] }
+  },
+  "additionalProperties": true
+}

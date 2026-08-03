@@ -1,0 +1,30 @@
+enabled: true
+output_dir: renders
+fps: 24
+width: 480
+height: 240
+render_evals: 25
+temporal_mode: null
+target_frames: null
+trace_max_frames: null
+parallel_workers: 1
+
+periodic:
+  enabled: true
+  every_generations: 5
+  select_cells: 2
+  max_individuals: 2
+  episodes_per_individual: 2
+  terrain_selection: all
+  temporal_mode: diagnostic
+  target_frames: null
+  upload_to_wandb: true
+  include_archive_visuals: true
+  archive_heatmaps: [hits_falls, time_hits, time_falls]
+
+post_train:
+  enabled: true
+  temporal_mode: realtime
+  target_frames: null
+  upload_to_wandb: false
+  include_archive_visuals: true

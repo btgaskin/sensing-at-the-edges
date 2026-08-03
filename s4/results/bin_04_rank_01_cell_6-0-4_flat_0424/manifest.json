@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "kind": "sensing_edges_specimen_manifest",
+  "specimen_id": "bin_04_rank_01_cell_6-0-4_flat_0424",
+  "selected_rank": 1,
+  "generation": 99,
+  "run_dir_name": "paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb",
+  "condition": {
+    "preset_id": "paper_run",
+    "seed": 137,
+    "body_mode": "fixed",
+    "body_variant": "rect_7x2",
+    "emitter_strategy": "sep_cmaes",
+    "terrain_family": "cliff",
+    "group_label": "cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003",
+    "run_label": "cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137",
+    "controller_size": "sbt",
+    "deformation_condition": "on",
+    "noise_type": "off",
+    "physics_substeps": 15,
+    "n_generations": 150,
+    "total_population": 300,
+    "gpu_profile": "a100_40gb",
+    "reference_actuator_convergence": 0.003,
+    "reference_convergence_label": "ref003",
+    "train_max_steps": 4000,
+    "rerank_max_steps": 4000,
+    "test_max_steps": 4000,
+    "train_variant": "bilateral_goal_cliff_asymmetric_pairs_7x2_grid30",
+    "rerank_variant": "bilateral_goal_cliff_asymmetric_pairs_7x2_grid30",
+    "test_variant": "bilateral_goal_cliff_asymmetric_pairs_7x2_grid30",
+    "qd_descriptor_names": [
+      "goal_hit_count",
+      "fall_count",
+      "completion_time"
+    ],
+    "qd_descriptor_labels": [
+      "Goal Hit Count",
+      "Fall Count",
+      "Completion Time"
+    ]
+  },
+  "body": {
+    "mode": "fixed",
+    "shape": "rectangle",
+    "robot_w": 7,
+    "robot_h": 2
+  },
+  "controller": {
+    "nca_name": "sbt",
+    "ctrnn_hidden": 12,
+    "ctrnn_grid_hidden": 6,
+    "ctrnn_tau_min": 1.0,
+    "ctrnn_tau_max": 10.0
+  },
+  "selection": {
+    "schema_version": 1,
+    "specimen_id": "bin_04_rank_01_cell_6-0-4_flat_0424",
+    "selected_rank": 1,
+    "selection_rule": {
+      "priority_min_mirrored_pair_count": 4,
+      "prefer_perfect_hits": true,
+      "prefer_zero_falls": true,
+      "per_completion_bin": 3
+    },
+    "selection_summary": {
+      "candidate_index": 72,
+      "source": "archive",
+      "source_index": 72,
+      "archive_flat_index": 424,
+      "archive_cell_indices": [
+        6,
+        0,
+        4
+      ],
+      "archive_cell_id": "cell_6-0-4",
+      "archive_cell_label": "goal_hit_count=6|fall_count=0|completion_time=4",
+      "archive_fitness": 148.55784606933594,
+      "fitness": 208.55784606933594,
+      "goal_hit_count": 12.0,
+      "fall_count": 0.0,
+      "mirrored_pair_count": 6.0,
+      "completion_time": 0.4348334074020386,
+      "completion_bin": 4,
+      "activation_cost": 0.8924442529678345,
+      "perfect_hits": true,
+      "zero_falls": true,
+      "qualified_mirrored_priority": true,
+      "descriptor": [
+        6.0,
+        0.0,
+        0.4348333775997162
+      ],
+      "summary": {
+        "mean_progress_shaping": 0.0,
+        "mean_any_progress": 0.8881273766358694,
+        "mean_goal_progress": 0.9495423436164856,
+        "mean_correct_progress": 1.0,
+        "mean_incorrect_progress": 0.6178954467177391,
+        "mean_toward_goal_frontier": 1.0,
+        "mean_reversal_progress": 0.6178954467177391,
+        "mean_safe_arrival_bonus": 0.0,
+        "mean_safe_dwell_bonus": 0.0,
+        "mean_urgency_shaping": 0.0,
+        "mean_fall_count": 0.0,
+        "goal_touch_rate": 1.0,
+        "edge_entry_rate": 0.0,
+        "mean_cliff_vicinity_fraction": 0.0,
+        "mean_probe_extent": 0.5408871372540792,
+        "mean_time_to_edge": 0.0,
+        "mean_time_to_goal": 0.4348333527644475,
+        "mean_turn_count": 0.0,
+        "mean_stable_turn_count": 5.0,
+        "mean_turn_motion_threshold": 0.014000000432133675,
+        "mean_activation_cost": 0.8924443324406942,
+        "mean_movement_speed": 0.015729077781240147
+      },
+      "specimen_id": "bin_04_rank_01_cell_6-0-4_flat_0424",
+      "selected_rank": 1,
+      "preview_entry_indices": [
+        0,
+        5,
+        11
+      ],
+      "preview_artifacts": [
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 0,
+          "flat_index": 424,
+          "archive_fitness": 208.55784606933594,
+          "selection_fitness": 208.55784606933594,
+          "cliff_x": 21,
+          "terrain_idx": 0,
+          "gif_path": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/renders/bin_04_rank_01_cell_6-0-4_flat_0424/rank_0_ep_0.gif",
+          "episode_fitness": 105.04996359348297,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4348334074020386,
+          "peak_front_x": 2.3900771141052246,
+          "safe_front_x": 1.6322633028030396,
+          "probe_extent": 0.7578138113021851,
+          "turn_count": 0.0,
+          "stable_turn_count": 6.0,
+          "turn_motion_threshold": 0.014000000432133675
+        },
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 1,
+          "flat_index": 424,
+          "archive_fitness": 208.55784606933594,
+          "selection_fitness": 208.55784606933594,
+          "cliff_x": 24,
+          "terrain_idx": 1,
+          "gif_path": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/renders/bin_04_rank_01_cell_6-0-4_flat_0424/rank_0_ep_1.gif",
+          "episode_fitness": 77.26749628782272,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4348334074020386,
+          "peak_front_x": 2.4411940574645996,
+          "safe_front_x": 2.439633846282959,
+          "probe_extent": 0.001560211181640625,
+          "turn_count": 0.0,
+          "stable_turn_count": 3.0,
+          "turn_motion_threshold": 0.014000000432133675
+        },
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 2,
+          "flat_index": 424,
+          "archive_fitness": 208.55784606933594,
+          "selection_fitness": 208.55784606933594,
+          "cliff_x": 22,
+          "terrain_idx": 2,
+          "gif_path": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/renders/bin_04_rank_01_cell_6-0-4_flat_0424/rank_0_ep_2.gif",
+          "episode_fitness": 80.73342859745026,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4348334074020386,
+          "peak_front_x": 2.235517740249634,
+          "safe_front_x": 2.2291555404663086,
+          "probe_extent": 0.006362199783325195,
+          "turn_count": 0.0,
+          "stable_turn_count": 3.0,
+          "turn_motion_threshold": 0.014000000432133675
+        }
+      ]
+    }
+  },
+  "run_provenance": {
+    "config": {
+      "logical_config_sha256": "e4fcc2fb5eb0e31cb754af11e603e2d14cf97d9f98069501aa2d8df809ed34e7",
+      "last_invocation_sha256": "646ba6e6bdfe188bb9f0d31a5e958972c69991ca0f419d0becd79417188cc11d",
+      "resolved_config_sha256": "646ba6e6bdfe188bb9f0d31a5e958972c69991ca0f419d0becd79417188cc11d",
+      "resolved_config_path": "/outputs/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/resolved_config.yaml"
+    },
+    "runtime": {
+      "gpu_profile": "a100_40gb",
+      "resolved_batching": {
+        "generation": {
+          "candidate_chunk_size": 300,
+          "candidate_bucket_sizes": [
+            300
+          ],
+          "exact_fit_small_run_threshold": 300,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "validation": {
+          "candidate_chunk_size": 32,
+          "candidate_bucket_sizes": [
+            8,
+            16,
+            32
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "test": {
+          "candidate_chunk_size": 8,
+          "candidate_bucket_sizes": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "trace": {
+          "candidate_chunk_size": 8,
+          "candidate_bucket_sizes": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        }
+      },
+      "resolved_collision": {
+        "mode": "hybrid_suite_probe",
+        "build_max_triples": 18432,
+        "build_max_self_triples": 640,
+        "runtime_build_max_triples": 768,
+        "runtime_build_max_self_triples": 640,
+        "dynamic_max_candidates": 192,
+        "dynamic_max_narrow": 768,
+        "suite": {
+          "terrain_count": 900,
+          "max_candidate_pairs": 428,
+          "max_triples": 1712,
+          "max_self_triples": 480
+        },
+        "synthetic": {
+          "terrain_count": 1,
+          "max_candidate_pairs": 4124,
+          "max_triples": 16496,
+          "max_self_triples": 480
+        },
+        "runtime": {
+          "terrain_count": 1,
+          "max_candidate_pairs": 120,
+          "max_triples": 480,
+          "max_self_triples": 480
+        }
+      }
+    },
+    "hardware": {
+      "backend": "gpu",
+      "device_count": 1,
+      "devices": [
+        "cuda:0"
+      ],
+      "gpu_name": "cuda:0"
+    },
+    "system": {
+      "platform": "Linux-4.4.0-x86_64-with-glibc2.36",
+      "machine": "x86_64",
+      "python_version": "3.11.12",
+      "numpy_version": "2.4.4",
+      "jax_version": "0.9.2",
+      "jaxlib_version": "0.9.2",
+      "evosax_version": "0.2.0"
+    },
+    "git": {
+      "commit": "unknown",
+      "branch": null,
+      "dirty": true
+    },
+    "lineage": {
+      "mode": "staged",
+      "parent_run_id": null,
+      "parent_checkpoint_path": null,
+      "parent_completed_generations": null,
+      "parent_schedule_hashes": null
+    }
+  },
+  "paths": {
+    "run_manifest": "/outputs/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/manifest.json",
+    "resolved_config": "/outputs/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/resolved_config.yaml",
+    "genotype": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/specimen_bin_04_rank_01_cell_6-0-4_flat_0424/genotype.npz",
+    "controller_params": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/specimen_bin_04_rank_01_cell_6-0-4_flat_0424/controller_params.npz",
+    "config_snapshot": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/specimen_bin_04_rank_01_cell_6-0-4_flat_0424/config_snapshot.yaml",
+    "selection_summary": "/outputs/specimens/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed137_e4fcc2fb/stages/gen_0099/specimen_bin_04_rank_01_cell_6-0-4_flat_0424/selection_summary.json"
+  },
+  "post_run": null
+}

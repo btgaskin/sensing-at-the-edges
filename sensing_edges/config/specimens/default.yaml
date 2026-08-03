@@ -1,0 +1,18 @@
+enabled: false
+output_root: specimens
+run_on_stage_pause: false
+source: archive_plus_fresh_pop
+fresh_population_size: null
+terrain_source: val_plus_test_from_train_schedule
+n_terrains: 12
+priority_min_mirrored_pair_count: 4
+prefer_perfect_hits: true
+prefer_zero_falls: true
+per_completion_bin: 3
+preview_renders_per_specimen: 6
+preview_render_quality:
+  temporal_mode: diagnostic
+  width: 360
+  height: 180
+  fps: 16
+  target_frames: 160

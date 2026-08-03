@@ -1,0 +1,23 @@
+generation:
+  candidate_chunk_size: null
+  candidate_bucket_sizes: []
+  exact_fit_small_run_threshold: null
+  warmup_enabled: true
+
+validation:
+  candidate_chunk_size: null
+  candidate_bucket_sizes: []
+  exact_fit_small_run_threshold: null
+  warmup_enabled: true
+
+test:
+  candidate_chunk_size: null
+  candidate_bucket_sizes: []
+  exact_fit_small_run_threshold: null
+  warmup_enabled: true
+
+trace:
+  candidate_chunk_size: null
+  candidate_bucket_sizes: []
+  exact_fit_small_run_threshold: null
+  warmup_enabled: true

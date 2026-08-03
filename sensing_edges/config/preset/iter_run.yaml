@@ -1,0 +1,111 @@
+# @package _global_
+# Earlier-iteration profile, retained for two reasons: it is the provenance
+# preset of the shipped comparison specimen (s4/results/bin_06_..., whose
+# bundled config_snapshot.yaml records the exact values used), and it is the
+# lightweight compose fixture for the test suite. The paper protocol itself
+# is preset/paper_run.yaml.
+defaults:
+  - override /body: default
+  - override /nca: sbt
+  - override /gasnet: "off"
+  - override /gpu_profile: a100_40gb
+  - override /sim: half
+  - override /terrain: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  - _self_
+
+preset_id: iter_run
+notes: "Lightweight SBT cliff bilateral run profile on rect_7x2"
+tags: [sbt, iteration, bilateral, cliff, rect_7x2]
+
+sim:
+  airborne_kill_height_margin_cells: 1.0
+
+train:
+  n_generations: 50
+  n_episodes: 6
+  max_steps: 2500
+  checkpoint_interval: 10
+  require_schedule_dir: true
+
+eval:
+  eval_individuals: 5
+  rerank_episodes: 6
+  test_episodes: 6
+  rerank_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  test_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  rerank_max_steps: 2500
+  test_max_steps: 2500
+
+qd:
+  emitter_strategy: sep_cmaes
+  descriptors:
+    names: [goal_hit_count, fall_count, completion_time]
+  archive:
+    dims: [7, 7, 10]
+    ranges: null
+    learning_rate: 0.1
+  n_emitters: 10
+  emitter_pop_size: 15
+  initial_sigma: 1.0
+
+terrain:
+  robot_w: 7
+  robot_h: 2
+  bilateral_spawn_x_offset: 1
+
+batching:
+  generation:
+    candidate_chunk_size: 300
+    candidate_bucket_sizes: [300]
+    exact_fit_small_run_threshold: 300
+    warmup_enabled: false
+  validation:
+    candidate_chunk_size: 32
+    candidate_bucket_sizes: [8, 16, 32]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  test:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  trace:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+
+render:
+  render_evals: 5
+  target_frames: null
+  trace_max_frames: null
+  parallel_workers: 2
+  periodic:
+    enabled: true
+    every_generations: 10
+    max_individuals: 3
+    episodes_per_individual: 6
+    temporal_mode: diagnostic
+    width: 360
+    height: 180
+    fps: 16
+    target_frames: 160
+    include_archive_visuals: true
+  post_train:
+    enabled: true
+    temporal_mode: realtime
+    target_frames: null
+
+collision:
+  strategy: dynamic_broadphase
+  dynamic_impl: sparse_candidate_list
+
+nca:
+  active_comm_filters: [sobel_x, sobel_y, laplacian, identity]
+  mace_mode: "off"
+  ablate_deformation: false
+  noise:
+    noise_type: "off"
+
+specimens:
+  enabled: true

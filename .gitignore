@@ -1,0 +1,19 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+outputs/
+s4/results/*/analysis_runs/
+tmp/
+multirun/
+.hydra/
+wandb/
+# wandb/ above hides W&B run dirs; the Hydra config group must still ship
+!sensing_edges/config/wandb/
+!sensing_edges/config/wandb/default.yaml
+elite_specimens/
+paper_data/
+sable/
+.DS_Store

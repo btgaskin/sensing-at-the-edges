@@ -1,0 +1,7 @@
+strategy: dynamic_broadphase
+dynamic_max_candidates: 4096
+dynamic_bin_size: 0.2
+dynamic_impl: sparse_candidate_list
+dynamic_max_narrow: auto
+tuning:
+  mode: hybrid_suite_probe

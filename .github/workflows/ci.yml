@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Sync sensing_edges (resolves jax-evogym git dependency)
+        working-directory: sensing_edges
+        run: uv sync --extra dev
+      - name: Import smoke test
+        working-directory: sensing_edges
+        run: uv run --extra dev python -c "import sensing_edges"
+      - name: CPU-safe test subset
+        working-directory: sensing_edges
+        run: uv run --extra dev pytest -q tests/test_configs.py

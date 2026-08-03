@@ -1,0 +1,8 @@
+release_id: paper_main
+preset_ids:
+  - paper_run
+body_specs:
+  - rect_7x2
+deformation_conditions:
+  - "on"
+  - "off"

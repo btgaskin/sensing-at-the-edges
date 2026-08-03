@@ -1,0 +1,26 @@
+enabled: true
+n_emitters: 5
+emitter_pop_size: 20
+emitter_strategy: sep_cmaes
+emitter_flat_generations: 3
+emitter_flat_tolerance: 1.0e-12
+emitter_restart_stale_generations: 5
+emitter_restart_max_age: 50
+emitter_restart_improvement_eps: 0.5
+emitter_std_epsilon: 1.0e-12
+emitter_condition_cov_limit: 1.0e14
+initial_sigma: 0.5
+archive:
+  dims: null
+  ranges: null
+  learning_rate: 0.01
+  threshold_min: 0.0
+descriptors:
+  names: null
+focus:
+  enabled: false
+  tighten_every_n_gens: 10
+  min_occupied_to_tighten: 1
+  min_window_size: 3
+  targets: []
+  fallback_to_all_if_active_empty: true

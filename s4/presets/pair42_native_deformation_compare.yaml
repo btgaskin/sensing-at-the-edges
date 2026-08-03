@@ -1,0 +1,21 @@
+description: Minimal native-core deformation ablation replay on the matched (4,2) pair without rendering.
+jax_platform: cpu
+assays:
+  - deformation_ablation
+config_patch:
+  eval:
+    post_run:
+      max_steps: 4000
+      native_max_steps: 4000
+      trials_per_side: 1
+      native_pairs:
+        - goal_distance: 4
+          cliff_distance: 2
+      deformation_conditions:
+        - intact
+        - deformation_off
+      deformation_surfaces:
+        - native_core
+      deformation_render_conditions: []
+      trace:
+        enabled: false

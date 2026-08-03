@@ -1,0 +1,13 @@
+variant: cliff_only
+grid_h: 10
+grid_w: 35
+platform_y: 3
+base_width: 10
+spawn_x: 1
+spawn_y: 4
+robot_w: 7
+robot_h: 2
+cliff_x_min: 10
+cliff_x_max: 24
+gap_widths: []
+gap_budget: 0

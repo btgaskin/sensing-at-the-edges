@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sensing Edges Checkpoint Metadata",
+  "type": "object",
+  "required": ["schema_version", "kind", "generation"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "kind": { "type": "string", "const": "sensing_edges_checkpoint" },
+    "run_id": { "type": "string" },
+    "generation": { "type": "integer", "minimum": 0 },
+    "created_at_utc": { "type": "string" },
+    "config_sha256": { "type": "string" },
+    "archive": {
+      "type": "object",
+      "required": ["dims", "occupied_count"],
+      "properties": {
+        "dims": { "type": "array", "items": { "type": "integer" } },
+        "ranges": { "type": "array" },
+        "learning_rate": { "type": "number" },
+        "threshold_min": { "type": "number" },
+        "occupied_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "emitters": {
+      "type": "object",
+      "properties": {
+        "n_emitters": { "type": "integer" },
+        "strategy": { "type": ["string", "null"] },
+        "population_size": { "type": ["integer", "null"] },
+        "stale_generations": { "type": ["integer", "null"] },
+        "max_age": { "type": ["integer", "null"] },
+        "meaningful_improvement_eps": { "type": ["number", "null"] },
+        "condition_cov_limit": { "type": ["number", "null"] },
+        "flat_generations": { "type": ["integer", "null"] },
+        "flat_tolerance": { "type": ["number", "null"] },
+        "std_epsilon": { "type": ["number", "null"] },
+        "param_overrides": { "type": ["object", "null"] },
+        "total_restarts": { "type": "array", "items": { "type": "integer" } },
+        "stale_counters": { "type": "array", "items": { "type": "integer" } },
+        "age_since_restart": { "type": "array", "items": { "type": "integer" } },
+        "last_restart_reasons": {
+          "type": "array",
+          "items": { "type": ["string", "null"] }
+        },
+        "restart_reason_totals": {
+          "type": "object",
+          "properties": {
+            "stale": { "type": "array", "items": { "type": "integer" } },
+            "es_stop": { "type": "array", "items": { "type": "integer" } },
+            "age_cap": { "type": "array", "items": { "type": "integer" } }
+          }
+        },
+        "flat_counters": { "type": "array", "items": { "type": "integer" } }
+      }
+    },
+    "progress": {
+      "type": "object",
+      "properties": {
+        "best_fitness_so_far": { "type": "number" },
+        "n_occupied": { "type": "integer" }
+      }
+    }
+  }
+}

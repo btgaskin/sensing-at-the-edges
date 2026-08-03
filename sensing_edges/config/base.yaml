@@ -1,0 +1,26 @@
+defaults:
+  - nca: default
+  - body: default
+  - gasnet: "off"
+  - sim: full
+  - train: default
+  - eval: default
+  - qd: default
+  - terrain: cliff_only
+  - collision: default
+  - jax: default
+  - logging: default
+  - wandb: default
+  - render: default
+  - audit: default
+  - specimens: default
+  - batching: default
+  - gpu_profile: l4
+  - _self_
+  - optional preset: null
+
+paper_core_id: sensing_edges_sbt_v1
+seed: 42
+preset_id: null
+notes: null
+tags: []

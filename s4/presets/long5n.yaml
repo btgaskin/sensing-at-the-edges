@@ -1,0 +1,26 @@
+description: Intact single-run long-distance render for pair (10,5), normal left-side orientation.
+seed: 137
+jax_platform: cpu
+assays:
+  - deformation_ablation
+config_patch:
+  eval:
+    post_run:
+      max_steps: 4000
+      native_max_steps: 4000
+      trials_per_side: 1
+      goal_sides: [left]
+      deformation_conditions: [intact]
+      deformation_surfaces: [long_distance_generalization]
+      deformation_render_conditions: [intact]
+      long_distance_pairs:
+        - goal_distance: 10
+          cliff_distance: 5
+      long_distance_pair_max_steps:
+        - goal_distance: 10
+          cliff_distance: 5
+          max_steps: 6000
+      trace:
+        enabled: false
+      render:
+        enabled: true

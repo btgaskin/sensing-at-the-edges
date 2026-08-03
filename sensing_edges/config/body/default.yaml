@@ -1,0 +1,14 @@
+mode: fixed
+shape: rectangle
+fixed:
+  hidden_init_scale: 0.0
+growth:
+  steps: 100
+  threshold: 0.5
+  frontier_identity_only: true
+  seed_position: center
+  connectivity_max_iters: 20
+  noise_init_scale: 0.0
+  state_transition: reset
+  max_robot_h: 3
+  max_robot_w: 7

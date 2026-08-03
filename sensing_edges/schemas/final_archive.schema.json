@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sensing Edges Final Archive Metadata",
+  "type": "object",
+  "required": ["schema_version", "kind", "run_id", "created_at_utc", "archive"],
+  "properties": {
+    "schema_version": { "type": "integer", "const": 1 },
+    "kind": { "type": "string", "const": "sensing_edges_final_archive" },
+    "run_id": { "type": "string" },
+    "created_at_utc": { "type": "string" },
+    "config_sha256": { "type": "string" },
+    "archive": {
+      "type": "object",
+      "required": ["dims", "ranges", "descriptor_names", "occupied_count"],
+      "properties": {
+        "dims": { "type": "array", "items": { "type": "integer" } },
+        "ranges": { "type": "array" },
+        "descriptor_names": { "type": "array", "items": { "type": "string" } },
+        "descriptor_labels": { "type": "array", "items": { "type": "string" } },
+        "learning_rate": { "type": "number" },
+        "threshold_min": { "type": "number" },
+        "occupied_count": { "type": "integer", "minimum": 0 },
+        "best_fitness": { "type": "number" },
+        "qd_score": { "type": "number" },
+        "coverage": { "type": "number" }
+      }
+    }
+  }
+}

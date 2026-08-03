@@ -1,0 +1,20 @@
+[project]
+name = "s4-probes"
+version = "0.1.0"
+description = "Local preset-driven probe workspace for the canonical sensing_edges specimen"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "sensing-edges[dev]",
+    "jax-evogym",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+sensing-edges = { path = "../sensing_edges", editable = true }
+jax-evogym = { git = "https://github.com/btgaskin/jax-evogym", tag = "v0.1.0" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

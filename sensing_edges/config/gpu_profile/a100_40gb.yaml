@@ -1,0 +1,23 @@
+id: a100_40gb
+name: NVIDIA A100 40GB
+hbm_gib: 40
+usable_fraction: 0.75
+compile_headroom_gib: 4
+safety_margin_gib: 2
+workloads:
+  generation:
+    candidate_chunk_size: 300
+    candidate_bucket_sizes: [300]
+    exact_fit_small_run_threshold: 300
+  validation:
+    candidate_chunk_size: 32
+    candidate_bucket_sizes: [8, 16, 32]
+    exact_fit_small_run_threshold: 8
+  test:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8
+  trace:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8

@@ -1,0 +1,26 @@
+variant: single_gap3_zone10to24_30_ood
+grid_h: 10
+grid_w: 30
+platform_y: 3
+base_width: 10
+spawn_x: 1
+spawn_y: 4
+robot_w: 7
+robot_h: 2
+hazard_mode: zone_single_gap
+spawn_plateau_width: 10
+approach_width: 0
+randomized_zone_width: 15
+remainder_width: 5
+cliff_x_min: 10
+cliff_x_max: 24
+gap_widths: [3]
+gap_budget: 1
+exact_gap_widths: [3]
+single_gap_width: 3
+gap_start_bands:
+  - [10, 14]
+  - [15, 19]
+min_gap_separation: 2
+min_post_gap_runway: 2
+layout_sampling: uniform_legal_layouts

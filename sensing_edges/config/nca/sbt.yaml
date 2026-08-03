@@ -1,0 +1,29 @@
+# SBT-grounded NCA-CTRNN: 12 hidden neurons, 6 grid-visible channels.
+ctrnn_hidden: 12
+ctrnn_grid_hidden: 6
+active_comm_filters: [sobel_x, sobel_y, laplacian, identity]
+ablate_deformation: false
+ctrnn_dt: 1.0
+ctrnn_tau_min: 1.0
+ctrnn_tau_max: 10.0
+p_update: 1.0
+nca_steps_per_phase: 5
+noise:
+  # noise_type=ou_evolved is reserved for future work and is not implemented yet.
+  noise_type: ou_fixed
+  ou_theta: 0.1
+  ou_sigma: 0.3
+gas_decay_rate: 0.95
+gas_diffusion_radius: 3.0
+gas_gain_sensitivity: 2.0
+gas_max_concentration: 1.0
+gas_gain_min: -4.0
+gas_gain_max: 4.0
+update_mode: hybrid
+state_clip_value: 3.0
+mace_mode: cross_channel
+mace_beta: 1.0
+mace_init_mass: 1.0
+deformation_gain_absolute: 10.0
+deformation_gain_compliance: 85.0
+deformation_gain_auto_scale: true

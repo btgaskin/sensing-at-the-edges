@@ -1,0 +1,394 @@
+nca:
+  ctrnn_hidden: 12
+  ctrnn_grid_hidden: 6
+  ablate_deformation: false
+  ctrnn_dt: 1.0
+  ctrnn_tau_min: 1.0
+  ctrnn_tau_max: 10.0
+  p_update: 1.0
+  nca_steps_per_phase: 5
+  noise:
+    noise_type: 'off'
+    ou_theta: 0.1
+    ou_sigma: 0.3
+  gas_decay_rate: 0.95
+  gas_diffusion_radius: 3.0
+  gas_gain_sensitivity: 2.0
+  gas_max_concentration: 1.0
+  gas_gain_min: -4.0
+  gas_gain_max: 4.0
+  update_mode: hybrid
+  state_clip_value: 3.0
+  mace_mode: 'off'
+  mace_beta: 1.0
+  mace_init_mass: 1.0
+  deformation_gain_absolute: 10.0
+  deformation_gain_compliance: 85.0
+  deformation_gain_auto_scale: true
+  gasnet_mode: 'off'
+  gasnet_type: signal
+body:
+  mode: fixed
+  shape: rectangle
+  growth:
+    steps: 100
+    threshold: 0.5
+    frontier_identity_only: true
+    seed_position: center
+    connectivity_max_iters: 20
+    noise_init_scale: 0.0
+    state_transition: reset
+    max_robot_h: 3
+    max_robot_w: 7
+sim:
+  physics_substeps: 15
+  sense_act_phases_per_env_step: 3
+  actuator_convergence: 0.003
+  spring_stiffness_scale: 0.8
+  floor_static_friction_const: 0.4
+  floor_stiction_stiffness: 20000.0
+  floor_stiction_switch_speed: 0.05
+  airborne_kill_height_margin_cells: 1.5
+  integrator: rk4
+train:
+  n_generations: 150
+  stop_after_generations: 100
+  n_episodes: 6
+  max_steps: 4000
+  checkpoint_interval: 25
+  checkpoint_dir: checkpoints/
+  resume_from: null
+  resume_mode: staged
+  allow_output_dir_hash_mismatch_resume: true
+  terrain_schedule_dir: terrain_suites/seed_1564_bilateral_goal_cliff_asymmetric_pairs_7x2_grid30_g150_ep6_val6_test6
+  require_schedule_dir: true
+  allow_legacy_schedule_hashes: false
+  output_dir: /outputs/paper_run_cliff_rect_7x2_sep_cmaes_g150_p300_15sub_t4000_e4000_ref003_seed1564_a792f078
+eval:
+  eval_episodes: 16
+  eval_individuals: 10
+  rerank_episodes: 6
+  test_episodes: 6
+  rerank_max_steps: 4000
+  test_max_steps: 4000
+  rerank_schedule_dir: terrain_suites/seed_1564_bilateral_goal_cliff_asymmetric_pairs_7x2_grid30_g150_ep6_val6_test6
+  test_schedule_dir: terrain_suites/seed_1564_bilateral_goal_cliff_asymmetric_pairs_7x2_grid30_g150_ep6_val6_test6
+  rerank_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  test_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  allow_legacy_schedule_hashes: false
+  allow_checkpoint_config_mismatch: false
+  ou_noise_seed: 12345
+  deformation_suite:
+    enabled: true
+    elite_count: 5
+    render: true
+    render_top_n: 3
+    variants:
+    - clean
+    - zero
+    - noisy
+    - shuffled
+    noise_sigma_signed_delta: 0.05
+    shuffle_mode: episode_fixed
+  gap_generalization_suite:
+    enabled: true
+    trials_per_surface: 12
+    max_steps: null
+    render: false
+    surfaces:
+    - name: gap_w1
+      cliff_front_gap_width: 1
+      cliff_post_gap_runway: 1
+    - name: gap_w2
+      cliff_front_gap_width: 2
+      cliff_post_gap_runway: 1
+    - name: gap_w3
+      cliff_front_gap_width: 3
+      cliff_post_gap_runway: 1
+    - name: bare_cliff
+      cliff_front_gap_width: 0
+      cliff_post_gap_runway: 0
+  robustness_probe:
+    enabled: true
+    elite_count: 3
+    mode: symmetric_double_cliff
+    grid_h: 10
+    grid_w: 30
+    platform_y: 3
+    plateau_width: 10
+    min_distance: 1
+    max_distance: 6
+    max_steps: null
+    render: true
+  post_run:
+    enabled: true
+    auto_mode: blocking
+    run_on_stage_pause: true
+    selected_rank: 0
+    max_steps: 5000
+    output_dir: post_run
+    native_pairs:
+    - goal_distance: 2
+      cliff_distance: 1
+    - goal_distance: 4
+      cliff_distance: 2
+    - goal_distance: 6
+      cliff_distance: 3
+    long_distance_pairs:
+    - goal_distance: 8
+      cliff_distance: 4
+    - goal_distance: 10
+      cliff_distance: 5
+    trials_per_side: 20
+    double_cliff:
+      plateau_width: 9
+      widths:
+      - 2
+      - 4
+      - 6
+      trials_per_width: 20
+    signaling_conditions:
+    - intact
+    - sobel_x_off
+    - sobel_y_off
+    - laplacian_off
+    - identity_comm_off
+    - all_comm_off
+    - sobel_x_sign_flip
+    deformation_conditions:
+    - intact
+    - absolute_only
+    - compliance_only
+    - deformation_off
+    - deformation_reversed
+    body_transfer_bodies:
+    - label: rect_6x2
+      robot_w: 6
+      robot_h: 2
+      shape: rectangle
+    - label: rect_8x2
+      robot_w: 8
+      robot_h: 2
+      shape: rectangle
+    - label: rect_7x3
+      robot_w: 7
+      robot_h: 3
+      shape: rectangle
+    trace:
+      enabled: true
+      scope: native_intact_all_trials
+      storage_scope: robot_local
+qd:
+  enabled: true
+  n_emitters: 12
+  emitter_pop_size: 25
+  emitter_strategy: sep_cmaes
+  emitter_flat_generations: 3
+  emitter_flat_tolerance: 1.0e-12
+  emitter_std_epsilon: 1.0e-12
+  initial_sigma: 1.0
+  archive:
+    dims:
+    - 7
+    - 7
+    - 10
+    ranges: null
+    learning_rate: 0.1
+    threshold_min: 0.0
+  descriptors:
+    names:
+    - goal_hit_count
+    - fall_count
+    - completion_time
+terrain:
+  variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  task_mode: bilateral_goal_cliff
+  grid_h: 10
+  grid_w: 30
+  platform_y: 3
+  base_width: 12
+  center_plateau_width: 12
+  spawn_x: 11
+  spawn_y: 4
+  robot_w: 7
+  robot_h: 2
+  cliff_x_min: 20
+  cliff_x_max: 25
+  distance_pairs:
+  - goal_distance: 2
+    cliff_distance: 1
+  - goal_distance: 4
+    cliff_distance: 2
+  - goal_distance: 6
+    cliff_distance: 3
+  cliff_probe_gap_width: 0
+  cliff_probe_ledge_width: 0
+  sampling_mode: canonical_bilateral_cycle
+  gap_widths: []
+  gap_budget: 0
+  bilateral_spawn_x_offset: 1
+collision:
+  strategy: dynamic_broadphase
+  dynamic_max_candidates: 4096
+  dynamic_bin_size: 0.2
+  dynamic_impl: sparse_candidate_list
+  dynamic_max_narrow: auto
+  tuning:
+    mode: hybrid_suite_probe
+jax:
+  matmul_precision: default
+  cache:
+    enabled: true
+    dir: /cache/jax
+    min_compile_time_secs: 5.0
+logging:
+  level: INFO
+  metrics_file: metrics.jsonl
+  manifest_file: manifest.json
+wandb:
+  enabled: true
+  project: sensing-edges
+  group: null
+  name: null
+render:
+  enabled: true
+  output_dir: renders
+  fps: 24
+  width: 480
+  height: 240
+  render_evals: 10
+  temporal_mode: null
+  target_frames: null
+  trace_max_frames: null
+  parallel_workers: 4
+  periodic:
+    enabled: true
+    every_generations: 10
+    select_cells: 2
+    max_individuals: 3
+    episodes_per_individual: 6
+    terrain_selection: all
+    temporal_mode: diagnostic
+    target_frames: 160
+    upload_to_wandb: true
+    include_archive_visuals: true
+    width: 360
+    height: 180
+    fps: 16
+  post_train:
+    enabled: true
+    temporal_mode: realtime
+    target_frames: null
+    upload_to_wandb: false
+    include_archive_visuals: true
+audit:
+  enabled: false
+  output_root: audit
+  generation_eval_mode: reduced_host
+  capture_archive_winners: true
+  replay_accepted_winners: false
+  compare_generation_eval_modes: false
+  repeat_full_generation_batch: false
+  compare_trace_on_full_generation_batch: false
+  compare_floor_stiction_counterfactual: false
+  save_full_generation_genotypes: false
+  probe_internal_phase_divergence: false
+  max_generation_probe_winners: 16
+specimens:
+  enabled: true
+  output_root: specimens
+  run_on_stage_pause: true
+  source: archive_plus_fresh_pop
+  fresh_population_size: null
+  terrain_source: val_plus_test_from_train_schedule
+  n_terrains: 12
+  priority_min_mirrored_pair_count: 4
+  prefer_perfect_hits: true
+  prefer_zero_falls: true
+  per_completion_bin: 3
+  preview_renders_per_specimen: 3
+  preview_render_quality:
+    temporal_mode: diagnostic
+    width: 360
+    height: 180
+    fps: 16
+    target_frames: 160
+batching:
+  generation:
+    candidate_chunk_size: 300
+    candidate_bucket_sizes:
+    - 300
+    exact_fit_small_run_threshold: 300
+    warmup_enabled: false
+  validation:
+    candidate_chunk_size: 32
+    candidate_bucket_sizes:
+    - 8
+    - 16
+    - 32
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  test:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes:
+    - 1
+    - 2
+    - 4
+    - 8
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  trace:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes:
+    - 1
+    - 2
+    - 4
+    - 8
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+gpu_profile:
+  id: a100_40gb
+  name: NVIDIA A100 40GB
+  hbm_gib: 40
+  usable_fraction: 0.75
+  compile_headroom_gib: 4
+  safety_margin_gib: 2
+  workloads:
+    generation:
+      candidate_chunk_size: 300
+      candidate_bucket_sizes:
+      - 300
+      exact_fit_small_run_threshold: 300
+    validation:
+      candidate_chunk_size: 32
+      candidate_bucket_sizes:
+      - 8
+      - 16
+      - 32
+      exact_fit_small_run_threshold: 8
+    test:
+      candidate_chunk_size: 8
+      candidate_bucket_sizes:
+      - 1
+      - 2
+      - 4
+      - 8
+      exact_fit_small_run_threshold: 8
+    trace:
+      candidate_chunk_size: 8
+      candidate_bucket_sizes:
+      - 1
+      - 2
+      - 4
+      - 8
+      exact_fit_small_run_threshold: 8
+paper_core_id: sensing_edges_sbt_v1
+seed: 1564
+preset_id: paper_run
+notes: SBT frozen-schedule cliff bilateral paper run on rect_7x2
+tags:
+- sbt
+- paper
+- bilateral
+- cliff
+- rect_7x2

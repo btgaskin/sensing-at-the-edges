@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sensing Edges Publication Release",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "kind",
+    "release_id",
+    "generated_at_utc",
+    "publication_set",
+    "counts",
+    "paths"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer" },
+    "kind": { "const": "sensing_edges_publication_release" },
+    "release_id": { "type": "string" },
+    "generated_at_utc": { "type": "string" },
+    "outputs_dir": { "type": "string" },
+    "release_root": { "type": "string" },
+    "publication_set": { "type": "object" },
+    "counts": { "type": "object" },
+    "exclude_reasons": { "type": "object" },
+    "copied_schedule_dirs": { "type": "object" },
+    "paths": { "type": "object" }
+  },
+  "additionalProperties": true
+}

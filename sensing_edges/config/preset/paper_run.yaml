@@ -1,0 +1,141 @@
+# @package _global_
+defaults:
+  - override /body: default
+  - override /nca: sbt
+  - override /gasnet: "off"
+  - override /gpu_profile: h100
+  - override /sim: half
+  - override /terrain: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  - _self_
+
+preset_id: paper_run
+notes: "SBT frozen-schedule cliff bilateral paper run on rect_7x2"
+tags: [sbt, paper, bilateral, cliff, rect_7x2]
+
+body:
+  fixed:
+    hidden_init_scale: 0.0
+
+sim:
+  airborne_kill_height_margin_cells: 1.0
+  soft_loft_threshold_cells: 0.2
+
+train:
+  n_generations: 150
+  stop_after_generations: 100
+  n_episodes: 6
+  max_steps: 3000
+  soft_loft_penalty_scale: 8.0
+  checkpoint_interval: 25
+  require_schedule_dir: true
+
+eval:
+  eval_individuals: 10
+  rerank_episodes: 6
+  test_episodes: 6
+  rerank_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  test_variant: bilateral_goal_cliff_asymmetric_pairs_7x2_grid30
+  rerank_max_steps: 3000
+  test_max_steps: 3000
+  deformation_suite:
+    enabled: true
+    render: true
+    render_top_n: 3
+  gap_generalization_suite:
+    enabled: true
+  robustness_probe:
+    enabled: true
+    elite_count: 3
+    render: true
+  post_run:
+    enabled: true
+    auto_mode: "off"
+    run_on_stage_pause: true
+
+qd:
+  emitter_strategy: sep_cmaes
+  emitter_flat_generations: 3
+  emitter_flat_tolerance: 1.0e-12
+  emitter_std_epsilon: 1.0e-12
+  descriptors:
+    names: [goal_hit_count, fall_count, completion_time]
+  archive:
+    dims: [7, 7, 20]
+    ranges: [[0.0, 6.0], [0.0, 6.0], [0.2, 0.8]]
+    learning_rate: 0.1
+  focus:
+    enabled: true
+    tighten_every_n_gens: 20
+    min_occupied_to_tighten: 2
+    min_window_size: 3
+    targets:
+      - {name: goal_hit_count, direction: max}
+      - {name: fall_count, direction: min}
+    fallback_to_all_if_active_empty: true
+  n_emitters: 8
+  emitter_pop_size: 25
+  initial_sigma: 1.0
+
+terrain:
+  robot_w: 7
+  robot_h: 2
+  bilateral_spawn_x_offset: 1
+
+batching:
+  generation:
+    candidate_chunk_size: 200
+    candidate_bucket_sizes: [200]
+    exact_fit_small_run_threshold: 200
+    warmup_enabled: false
+  validation:
+    candidate_chunk_size: 32
+    candidate_bucket_sizes: [8, 16, 32]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  test:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+  trace:
+    candidate_chunk_size: 8
+    candidate_bucket_sizes: [1, 2, 4, 8]
+    exact_fit_small_run_threshold: 8
+    warmup_enabled: false
+
+render:
+  render_evals: 10
+  target_frames: null
+  trace_max_frames: null
+  parallel_workers: 4
+  periodic:
+    enabled: true
+    every_generations: 10
+    max_individuals: 3
+    episodes_per_individual: 6
+    temporal_mode: diagnostic
+    width: 360
+    height: 180
+    fps: 16
+    target_frames: 160
+    include_archive_visuals: true
+    archive_heatmaps: [hits_falls, time_hits, time_falls]
+  post_train:
+    enabled: true
+    temporal_mode: realtime
+    target_frames: null
+
+collision:
+  strategy: dynamic_broadphase
+  dynamic_impl: sparse_candidate_list
+
+nca:
+  active_comm_filters: [sobel_x, sobel_y, laplacian, identity]
+  mace_mode: "off"
+  ablate_deformation: false
+  noise:
+    noise_type: "off"
+
+specimens:
+  enabled: true
+  run_on_stage_pause: true

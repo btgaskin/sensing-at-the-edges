@@ -1,0 +1,15 @@
+n_generations: 50
+stop_after_generations: null
+n_episodes: 4
+max_steps: 500
+soft_loft_penalty_scale: 0.0
+gait_spectral_purity_bonus_scale: 0.0
+checkpoint_interval: 10
+checkpoint_dir: checkpoints/
+resume_from: null
+resume_mode: auto
+allow_output_dir_hash_mismatch_resume: false
+terrain_schedule_dir: null
+require_schedule_dir: false
+allow_legacy_schedule_hashes: false
+output_dir: outputs/default

@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "kind": "sensing_edges_specimen_manifest",
+  "specimen_id": "bin_04_rank_00_cell_6-0-4_flat_0424",
+  "selected_rank": 0,
+  "generation": 99,
+  "run_dir_name": "iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e",
+  "condition": {
+    "preset_id": "iter_run",
+    "seed": 42,
+    "body_mode": "fixed",
+    "body_variant": "rect_7x2",
+    "emitter_strategy": "sep_cmaes",
+    "terrain_family": "cliff",
+    "group_label": "cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003",
+    "run_label": "cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42",
+    "controller_size": "sbt",
+    "deformation_condition": "on",
+    "noise_type": "off",
+    "physics_substeps": 15,
+    "n_generations": 100,
+    "total_population": 150,
+    "gpu_profile": "a100_40gb",
+    "reference_actuator_convergence": 0.003,
+    "reference_convergence_label": "ref003",
+    "train_max_steps": 2000,
+    "rerank_max_steps": 2000,
+    "test_max_steps": 2000,
+    "train_variant": "bilateral_goal_cliff_asymmetric_pairs_8x2_30",
+    "rerank_variant": "bilateral_goal_cliff_asymmetric_pairs_8x2_30",
+    "test_variant": "bilateral_goal_cliff_asymmetric_pairs_8x2_30",
+    "qd_descriptor_names": [
+      "goal_hit_count",
+      "fall_count",
+      "completion_time"
+    ],
+    "qd_descriptor_labels": [
+      "Goal Hit Count",
+      "Fall Count",
+      "Completion Time"
+    ]
+  },
+  "body": {
+    "mode": "fixed",
+    "shape": "rectangle",
+    "robot_w": 7,
+    "robot_h": 2
+  },
+  "controller": {
+    "nca_name": "sbt",
+    "ctrnn_hidden": 12,
+    "ctrnn_grid_hidden": 6,
+    "ctrnn_tau_min": 1.0,
+    "ctrnn_tau_max": 10.0
+  },
+  "selection": {
+    "schema_version": 1,
+    "specimen_id": "bin_04_rank_00_cell_6-0-4_flat_0424",
+    "selected_rank": 0,
+    "selection_rule": {
+      "priority_min_mirrored_pair_count": 4,
+      "prefer_perfect_hits": true,
+      "prefer_zero_falls": true,
+      "per_completion_bin": 3
+    },
+    "selection_summary": {
+      "candidate_index": 66,
+      "source": "archive",
+      "source_index": 66,
+      "archive_flat_index": 424,
+      "archive_cell_indices": [
+        6,
+        0,
+        4
+      ],
+      "archive_cell_id": "cell_6-0-4",
+      "archive_cell_label": "goal_hit_count=6|fall_count=0|completion_time=4",
+      "archive_fitness": 148.0631103515625,
+      "fitness": 208.06312561035156,
+      "goal_hit_count": 12.0,
+      "fall_count": 0.0,
+      "mirrored_pair_count": 6.0,
+      "completion_time": 0.4019167125225067,
+      "completion_bin": 4,
+      "activation_cost": 0.9129109382629395,
+      "perfect_hits": true,
+      "zero_falls": true,
+      "qualified_mirrored_priority": true,
+      "descriptor": [
+        6.0,
+        0.0,
+        0.4019167125225067
+      ],
+      "summary": {
+        "mean_progress_shaping": 0.0,
+        "mean_any_progress": 0.8712911009788513,
+        "mean_goal_progress": 0.9292061626911163,
+        "mean_correct_progress": 1.0,
+        "mean_incorrect_progress": 0.6158013641834259,
+        "mean_toward_goal_frontier": 1.0,
+        "mean_reversal_progress": 0.6158013641834259,
+        "mean_safe_arrival_bonus": 0.0,
+        "mean_safe_dwell_bonus": 0.0,
+        "mean_urgency_shaping": 0.0,
+        "mean_fall_count": 0.0,
+        "goal_touch_rate": 1.0,
+        "edge_entry_rate": 0.0,
+        "mean_cliff_vicinity_fraction": 0.0,
+        "mean_probe_extent": 0.40380533536275226,
+        "mean_time_to_edge": 0.0,
+        "mean_time_to_goal": 0.40191668768723804,
+        "mean_turn_count": 0.0,
+        "mean_stable_turn_count": 5.5,
+        "mean_turn_motion_threshold": 0.014000000432133675,
+        "mean_activation_cost": 0.9129109481970469,
+        "mean_movement_speed": 0.02720586210489273
+      },
+      "specimen_id": "bin_04_rank_00_cell_6-0-4_flat_0424",
+      "selected_rank": 0,
+      "preview_entry_indices": [
+        0,
+        5,
+        11
+      ],
+      "preview_artifacts": [
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 0,
+          "flat_index": 424,
+          "archive_fitness": 208.06312561035156,
+          "selection_fitness": 208.06312561035156,
+          "cliff_x": 21,
+          "terrain_idx": 0,
+          "gif_path": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/renders/bin_04_rank_00_cell_6-0-4_flat_0424/rank_0_ep_0.gif",
+          "episode_fitness": 104.80234503746033,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4019167125225067,
+          "peak_front_x": 2.209867000579834,
+          "safe_front_x": 1.6109058856964111,
+          "probe_extent": 0.5989611148834229,
+          "turn_count": 0.0,
+          "stable_turn_count": 6.0,
+          "turn_motion_threshold": 0.014000000432133675
+        },
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 1,
+          "flat_index": 424,
+          "archive_fitness": 208.06312561035156,
+          "selection_fitness": 208.06312561035156,
+          "cliff_x": 26,
+          "terrain_idx": 1,
+          "gif_path": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/renders/bin_04_rank_00_cell_6-0-4_flat_0424/rank_0_ep_1.gif",
+          "episode_fitness": 80.08328843550352,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4019167125225067,
+          "peak_front_x": 2.601867437362671,
+          "safe_front_x": 2.5990583896636963,
+          "probe_extent": 0.0028090476989746094,
+          "turn_count": 0.0,
+          "stable_turn_count": 6.0,
+          "turn_motion_threshold": 0.014000000432133675
+        },
+        {
+          "stage": "specimen_preview",
+          "rank": 0,
+          "episode_idx": 2,
+          "flat_index": 424,
+          "archive_fitness": 208.06312561035156,
+          "selection_fitness": 208.06312561035156,
+          "cliff_x": 22,
+          "terrain_idx": 2,
+          "gif_path": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/renders/bin_04_rank_00_cell_6-0-4_flat_0424/rank_0_ep_2.gif",
+          "episode_fitness": 79.54009354114532,
+          "goal_hit_count": 12.0,
+          "fall_count": 0.0,
+          "completion_time": 0.4019167125225067,
+          "peak_front_x": 2.200450897216797,
+          "safe_front_x": 2.1955435276031494,
+          "probe_extent": 0.004907369613647461,
+          "turn_count": 0.0,
+          "stable_turn_count": 3.0,
+          "turn_motion_threshold": 0.014000000432133675
+        }
+      ]
+    }
+  },
+  "run_provenance": {
+    "config": {
+      "logical_config_sha256": "d4611d8e4f8d8497d21b97f390f57be74d82c9dbefdccea27008d55fe430b595",
+      "last_invocation_sha256": "0be086adb2c544f5f469993b382aaa229eff7fb44248579b6c3d1f578cf10e58",
+      "resolved_config_sha256": "0be086adb2c544f5f469993b382aaa229eff7fb44248579b6c3d1f578cf10e58",
+      "resolved_config_path": "/outputs/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/resolved_config.yaml"
+    },
+    "runtime": {
+      "gpu_profile": "a100_40gb",
+      "resolved_batching": {
+        "generation": {
+          "candidate_chunk_size": 150,
+          "candidate_bucket_sizes": [
+            150
+          ],
+          "exact_fit_small_run_threshold": 150,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "validation": {
+          "candidate_chunk_size": 32,
+          "candidate_bucket_sizes": [
+            8,
+            16,
+            32
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "test": {
+          "candidate_chunk_size": 8,
+          "candidate_bucket_sizes": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        },
+        "trace": {
+          "candidate_chunk_size": 8,
+          "candidate_bucket_sizes": [
+            1,
+            2,
+            4,
+            8
+          ],
+          "exact_fit_small_run_threshold": 8,
+          "warmup_enabled": false,
+          "memory_budget_bytes": 25769803776
+        }
+      },
+      "resolved_collision": {
+        "mode": "hybrid_suite_probe",
+        "build_max_triples": 18432,
+        "build_max_self_triples": 640,
+        "runtime_build_max_triples": 768,
+        "runtime_build_max_self_triples": 640,
+        "dynamic_max_candidates": 192,
+        "dynamic_max_narrow": 768,
+        "suite": {
+          "terrain_count": 600,
+          "max_candidate_pairs": 428,
+          "max_triples": 1712,
+          "max_self_triples": 480
+        },
+        "synthetic": {
+          "terrain_count": 1,
+          "max_candidate_pairs": 4124,
+          "max_triples": 16496,
+          "max_self_triples": 480
+        },
+        "runtime": {
+          "terrain_count": 1,
+          "max_candidate_pairs": 120,
+          "max_triples": 480,
+          "max_self_triples": 480
+        }
+      }
+    },
+    "hardware": {
+      "backend": "gpu",
+      "device_count": 1,
+      "devices": [
+        "cuda:0"
+      ],
+      "gpu_name": "cuda:0"
+    },
+    "system": {
+      "platform": "Linux-4.4.0-x86_64-with-glibc2.36",
+      "machine": "x86_64",
+      "python_version": "3.11.12",
+      "numpy_version": "2.4.4",
+      "jax_version": "0.9.2",
+      "jaxlib_version": "0.9.2",
+      "evosax_version": "0.2.0"
+    },
+    "git": {
+      "commit": "unknown",
+      "branch": null,
+      "dirty": true
+    },
+    "lineage": {
+      "mode": "branch",
+      "parent_run_id": "699ce733-c9ea-436e-82ac-413663acfbbe",
+      "parent_checkpoint_path": "/outputs/iter_run_rect_7x2_sep_cma_me_15sub_p150_g50_t2000_e2000_maceoff_diag/checkpoints/gen_0049",
+      "parent_completed_generations": 50,
+      "parent_schedule_hashes": {
+        "dir": "terrain_suites/seed_42_bilateral_goal_cliff_asymmetric_pairs_8x2_30_g50_ep6_val6_test6",
+        "hash_version": 1,
+        "train_hash": "9503a5d7c345f5fc07e6087216cbe0fef1949efd5cc927adbb3b8ac0ff454793",
+        "val_hash": "1404bfa5b06bc1a9d189e8c7cac19d6de614f2471bf4545ba0034352855bd396",
+        "test_hash": "8016d6c6643e722615b5e18c42f4b9bc313bc41de753ae8ca99d6242ff1ec764",
+        "train_content_hash": "9503a5d7c345f5fc07e6087216cbe0fef1949efd5cc927adbb3b8ac0ff454793",
+        "val_content_hash": "1404bfa5b06bc1a9d189e8c7cac19d6de614f2471bf4545ba0034352855bd396",
+        "test_content_hash": "8016d6c6643e722615b5e18c42f4b9bc313bc41de753ae8ca99d6242ff1ec764"
+      }
+    }
+  },
+  "paths": {
+    "run_manifest": "/outputs/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/manifest.json",
+    "resolved_config": "/outputs/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/resolved_config.yaml",
+    "genotype": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/specimen_bin_04_rank_00_cell_6-0-4_flat_0424/genotype.npz",
+    "controller_params": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/specimen_bin_04_rank_00_cell_6-0-4_flat_0424/controller_params.npz",
+    "config_snapshot": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/specimen_bin_04_rank_00_cell_6-0-4_flat_0424/config_snapshot.yaml",
+    "selection_summary": "/outputs/specimens/iter_run_cliff_rect_7x2_sep_cmaes_g100_p150_15sub_t2000_e2000_ref003_seed42_d4611d8e/specimen_bin_04_rank_00_cell_6-0-4_flat_0424/selection_summary.json"
+  }
+}

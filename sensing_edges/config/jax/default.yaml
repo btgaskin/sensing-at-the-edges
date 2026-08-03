@@ -1,0 +1,5 @@
+matmul_precision: default
+cache:
+  enabled: true
+  dir: /cache/jax
+  min_compile_time_secs: 5.0

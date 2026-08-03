@@ -1,0 +1,35 @@
+Code and data
+-------------------------------------------------------------------------------
+sensing-at-the-edges
+Copyright 2026 sensing-at-the-edges contributors
+
+Licensed under the Apache License, Version 2.0 (see the LICENSE file).
+
+Paper
+-------------------------------------------------------------------------------
+Sensing at the edges: synthetic specimens for early contractile coordination
+Copyright 2026 Ben Gaskin
+
+The file gaskin_alife.pdf is licensed under the Creative Commons Attribution
+4.0 International license (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+-------------------------------------------------------------------------------
+Lineage and attribution
+-------------------------------------------------------------------------------
+
+This research code is built on jax-evogym (https://github.com/btgaskin/jax-evogym),
+a JAX-native reimplementation of Evolution Gym (EvoGym).
+
+Evolution Gym is the original soft-body robot benchmark:
+
+  Evolution Gym
+  https://github.com/EvolutionGym/evogym
+  Copyright (c) 2022 jagdeepsb
+  Distributed under the MIT License.
+
+  Jagdeep Bhatia, Holly Jackson, Yunsheng Tian, Jie Xu, and Wojciech Matusik.
+  "Evolution Gym: A Large-Scale Benchmark for Evolving Soft Robots."
+  Advances in Neural Information Processing Systems (NeurIPS), 2021.
+
+See the jax-evogym NOTICE for the full Evolution Gym attribution and license text.

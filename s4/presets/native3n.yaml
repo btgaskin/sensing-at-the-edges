@@ -1,0 +1,22 @@
+description: Intact single-run native-core render for pair (6,3), normal left-side orientation.
+seed: 137
+jax_platform: cpu
+assays:
+  - deformation_ablation
+config_patch:
+  eval:
+    post_run:
+      max_steps: 4000
+      native_max_steps: 4000
+      trials_per_side: 1
+      goal_sides: [left]
+      deformation_conditions: [intact]
+      deformation_surfaces: [native_core]
+      deformation_render_conditions: [intact]
+      native_pairs:
+        - goal_distance: 6
+          cliff_distance: 3
+      trace:
+        enabled: false
+      render:
+        enabled: true
