@@ -1,19 +1,37 @@
-# sensing-at-the-edges
+# Sensing at the Edges
 
-Research code for *Sensing at the Edges*: evolving soft-body robots whose
-distributed controllers use deformation sensing to negotiate cliff terrain,
-built on the [jax-evogym](https://github.com/btgaskin/jax-evogym) simulator.
+Research code and specimen records for the ALIFE 2026 paper
+[*Sensing at the edges: synthetic specimens for early contractile
+coordination*](https://doi.org/10.1162/isal.a.959).
 
-The repository holds the complete paper pipeline in three layers:
+The experiment asks how a multicellular body can coordinate adaptive behavior
+before cells specialize into sensor or effector roles. A fixed 7 × 2 soft body
+has fourteen identical contractile cells, each running the same continuous-time
+recurrent neural network (CTRNN). Cells sense local deformation, exchange local
+signals, and contract within the [jax-evogym](https://github.com/btgaskin/jax-evogym)
+simulator. Evolution selects controller parameters in a bilateral goal-cliff
+environment, where the body must reach a goal on one side while avoiding a cliff
+on the other.
+
+Eight selected specimens achieved mean native success of 89.6% (SD 12.4%).
+Deformation and signaling ablations reveal distinct dependencies of edge
+responses and locomotor coordination. One specimen, S4, also reverses at edges
+under deformation ablation, with its ongoing controller drive redirected through
+body mechanics. Performance approaches the 50% unilateral-commitment baseline
+on longer, untrained distances; the cohort describes capabilities of selected
+specimens rather than their frequency across evolutionary searches.
+
+The repository organizes training, analysis, and specimen replay in three layers:
 
 - **`sensing_edges/`** — training and evaluation. A CMA-MAE quality-diversity
-  loop over an NCA-CTRNN controller in a cliff-walk environment, with Hydra
+  loop over a neural cellular automaton (NCA) with a shared CTRNN controller
+  in a bilateral goal-cliff environment, with Hydra
   configuration (`config/`), the frozen terrain-schedule bundles behind the
   shipped specimens (`terrain_suites/`), post-run assay orchestration,
   and Modal entrypoints for
   GPU training. The paper preset is `config/preset/paper_run.yaml`.
 - **`preprint/`** — analysis and figure scripts that turn run outputs into the
-  preprint's tables and figures.
+  manuscript's tables and figures.
 - **`s4/`** — the specimen audit layer: a preset-driven probe runner
   (`probe.py`), audit deliverables (`audit/`), and curated specimen bundles
   (`results/`) — genome, controller parameters, resolved config, and
@@ -21,13 +39,18 @@ The repository holds the complete paper pipeline in three layers:
 
 ## Paper
 
-**Sensing at the edges: synthetic specimens for early contractile coordination**  
-Ben Gaskin  
-ALIFE 2026 (ISAL)
+**Sensing at the edges: synthetic specimens for early contractile coordination**
 
-Status: camera-ready and submitted; not yet published.
+Ben Gaskin. *ALIFE 2026: Proceedings of the 2026 Artificial Life Conference*,
+article 33. MIT Press, published 17 August 2026.
+DOI: [10.1162/isal.a.959](https://doi.org/10.1162/isal.a.959).
 
-[Read the camera-ready paper](gaskin_alife.pdf).
+[Published paper](https://doi.org/10.1162/isal.a.959) ·
+[Bundled camera-ready PDF](gaskin_alife.pdf) ·
+[Illustrated research companion](https://www.bengaskin.com/sensing-edges/)
+
+Use [CITATION.cff](CITATION.cff) or GitHub's **Cite this repository** menu to
+cite the paper.
 
 ## Install
 
@@ -37,6 +60,8 @@ projects; `preprint/` is a script collection that runs against the
 (tag `v0.1.0`), so no separate checkout is needed:
 
 ```bash
+git clone https://github.com/btgaskin/sensing-at-the-edges.git
+cd sensing-at-the-edges
 cd sensing_edges
 uv sync
 ```
@@ -51,8 +76,10 @@ uv sync
 
 ## Reproducing runs
 
-See `sensing_edges/REPRODUCTION.md` for the full training protocol. GPU
-training runs on [Modal](https://modal.com) and expects your own Modal account:
+See [the reproduction guide](sensing_edges/REPRODUCTION.md) for the training
+protocol and [the specimen guide](s4/results/README.md) for the stored replay
+inputs. GPU training runs on [Modal](https://modal.com) and expects your own
+Modal account:
 the app is named `sensing-edges`, with volumes `se-jax-cache` and `se-outputs`,
 and a Modal secret named `wandb-key` holding a `WANDB_API_KEY` for logging
 (`modal secret create wandb-key WANDB_API_KEY=your_key_here`).

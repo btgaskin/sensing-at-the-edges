@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this research code or its specimen records, please cite the paper below."
+type: software
+title: "Sensing at the Edges: research code and specimen records"
+authors:
+  - family-names: Gaskin
+    given-names: Ben
+repository-code: "https://github.com/btgaskin/sensing-at-the-edges"
+license: Apache-2.0
+preferred-citation:
+  type: conference-paper
+  title: "Sensing at the edges: synthetic specimens for early contractile coordination"
+  authors:
+    - family-names: Gaskin
+      given-names: Ben
+  collection-title: "ALIFE 2026: Proceedings of the 2026 Artificial Life Conference"
+  publisher:
+    name: MIT Press
+  year: 2026
+  month: 8
+  date-published: "2026-08-17"
+  doi: "10.1162/isal.a.959"
+  url: "https://doi.org/10.1162/isal.a.959"
